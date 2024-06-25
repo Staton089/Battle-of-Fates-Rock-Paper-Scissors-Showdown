@@ -7,39 +7,46 @@
   </head>
   <body>
     <h1>Battle of Fates: Rock, Paper, Scissors Showdown</h1>
-    
+
     <h2>Outlast opponent First to reach Zero in Health loses</h2>
-    
+
     <hr />
-    
+
     <p>Enter Your Name:</p>
-    
+
     <input type="text" /> <button>Submit</button>
-   
+
     <div>
       <p id="playersHealthBar">Health Bar - 100</p>
     </div>
-    
+
     <ul>
-      <li>Rock</li>
-      <li>Paper</li>
-      <li>Scissors</li>
+      <li>
+        <button id="rockBtn">Rock</button>
+      </li>
+      <li>
+        <button id="paperBtn">Paper</button>
+      </li>
+      <li>
+        <button id="scissorsBtn">Scissors</button>
+      </li>
     </ul>
     <h3 id="playerOne">Player 1 - {UserName}</h3>
 
     <h4>VS.</h4>
 
     <div>
-      <p>Health Bar - 100</p>
+      <p id="CpuHealthBar">Health Bar - 100</p>
     </div>
-    
-    <h3 id="CpuHealthBar">Player 2 - CPU</h3>
-   
+
+    <h3>Player 2 - CPU</h3>
+
     <div>---{Note to self Display CPU Choice}---</div>
-    
+
     <hr />
-    
+
     <footer>Copyright 2024</footer>
- 
-</body>
+    
+    <script src="./script.js"></script>
+  </body>
 </html>
