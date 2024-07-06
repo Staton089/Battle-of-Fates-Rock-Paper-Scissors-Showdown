@@ -12,10 +12,16 @@ let scissorsBtn = document.getElementById("scissorsBtn"); // <li id="scissorsBtn
 let playerHealth = 100;
 let cpuHealth = 100;
 
-// add event listener
+
 // Add event listener
 rockBtn.addEventListener("click", function(){
-  playGame("Rock");
+  playGame("Rock"); //function playGame(playerChoice){}
+})
+paperBtn.addEventListener("click", function(){
+  playGame("Paper"); //function playGame(playerChoice){}
+})
+scissorsBtn.addEventListener("click", function(){
+  playGame("Scissors"); //function playGame(playerChoice){}
 })
 
 // ALL Function Here:
@@ -33,11 +39,11 @@ function CPUChoice() {
   return cpuRpsChoices[randomIndex];
 }
 
-/// Still on the logic for game 
+/// Still work on the logic for game 
 // Game
 function playGame(playerChoice) {
   if(playerChoice === CPUChoice()){
-    console.log("Tie")
+    console.log(`Tie`)
   }
 
 }
