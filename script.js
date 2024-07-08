@@ -1,66 +1,80 @@
-//DOM
-const playerOne = document.getElementById("playerOne"); // <h3 id="playerOne">Player 1 - {UserName}</h3>
-let playersHealthBar = document.getElementById("playersHealthBar"); // <p id="playersHealthBar">Health Bar - 100</p>
-let cpuHealthBar = document.getElementById("cpuHealthBar"); // <p id="CpuHealthBar">Health Bar - 100</p>
+// DOM elements
+const playerOne = document.getElementById("playerOne"); // Gets the element with ID "playerOne"
+let playersHealthBar = document.getElementById("playersHealthBar"); // Gets the element with ID "playersHealthBar"
+let cpuHealthBar = document.getElementById("cpuHealthBar"); // Gets the element with ID "cpuHealthBar"
 
-//RPS Button - DOM
-let rockBtn = document.getElementById("rockBtn"); // <li id="rockBtn">Rock</li>
-let paperBtn = document.getElementById("paperBtn"); // <li id="paperBtn">Paper</li>
-let scissorsBtn = document.getElementById("scissorsBtn"); // <li id="scissorsBtn">Scissors</li>
+// RPS Button - DOM
+let rockBtn = document.getElementById("rockBtn"); // Gets the element with ID "rockBtn"
+let paperBtn = document.getElementById("paperBtn"); // Gets the element with ID "paperBtn"
+let scissorsBtn = document.getElementById("scissorsBtn"); // Gets the element with ID "scissorsBtn"
 
 // Initial Health Values
-let playerHealth = 100;
-let cpuHealth = 100;
+let playerHealth = 100; // Sets initial player health to 100
+let cpuHealth = 100; // Sets initial CPU health to 100
 
+// Add event listeners to buttons
+rockBtn.addEventListener("click", function () {
+  playGameFunction("Rock"); // Calls playGame function with player choice "Rock" when rockBtn is clicked
+});
 
-// Add event listener
-rockBtn.addEventListener("click", function(){
-  playGame("Rock"); //function playGame(playerChoice){}
-})
-paperBtn.addEventListener("click", function(){
-  playGame("Paper"); //function playGame(playerChoice){}
-})
-scissorsBtn.addEventListener("click", function(){
-  playGame("Scissors"); //function playGame(playerChoice){}
-})
+paperBtn.addEventListener("click", function () {
+  playGameFunction("Paper"); // Calls playGame function with player choice "Paper" when paperBtn is clicked
+});
 
-// ALL Function Here:
-// CPU Choices -  Function to randomly select a choice for the CPU (Rock, Paper, or Scissors).
-function CPUChoice() {
-  // Define an array of choices for the CPU
-  const cpuRpsChoices = ["Rock", "Paper", "Scissors"];
+scissorsBtn.addEventListener("click", function () {
+  playGameFunction("Scissors"); // Calls playGame function with player choice "Scissors" when scissorsBtn is clicked
+});
 
-  // Generate a random index to select a move from cpuRpsChoices
-  // Math.random() generates a random number between 0 (inclusive) and 1 (exclusive)
-  // We multiply it by cpuRpsChoices.length to get a random index within the array bounds
-  const randomIndex = Math.floor(Math.random() * cpuRpsChoices.length);
-
-  // Return the move corresponding to the randomly generated index
-  return cpuRpsChoices[randomIndex];
+// Function to randomly select a choice for the CPU (Rock, Paper, or Scissors)
+function cpuChoiceFunction() {
+  const cpuRpsChoices = ["Rock", "Paper", "Scissors"]; // Array of CPU choices
+  const randomIndex = Math.floor(Math.random() * cpuRpsChoices.length); // Generates random index
+  return cpuRpsChoices[randomIndex]; // Returns CPU's random choice
 }
 
-/// Still work on the logic for game 
-// Game
-function playGame(playerChoice) {
-  if(playerChoice === CPUChoice()){
-    console.log(`Tie`)
-  }
+// Game logic
+function playGameFunction(playerChoice) {
+  let cpuChoice = cpuChoiceFunction(); // Gets CPU's choice using CPUChoice function
 
+  // Compare playerChoice and cpuChoice to determine the result
+  if (playerChoice === cpuChoice) {
+    console.log(`Tie`); // Logs tie if playerChoice equals cpuChoice
+  } else if (
+    (playerChoice === "Rock" && cpuChoice === "Scissors") || // Checks if player wins with Rock against Scissors
+    (playerChoice === "Paper" && cpuChoice === "Rock") || // Checks if player wins with Paper against Rock
+    (playerChoice === "Scissors" && cpuChoice === "Paper") // Checks if player wins with Scissors against Paper
+  ) {
+    console.log("You Win"); // Logs "You Win" if player wins
+    cpuHealth -= 20; // Reduces CPU's health by 10
+    console.log("CPU Health: " + cpuHealth); // Logs CPU's remaining health
+    
+    // After determining the result, check if the game is over
+    checkGameOverFunction(); // Calls checkGameOver function
+  } else {
+    playerHealth -= 20; // Reduces player's health by 10 if CPU wins
+    console.log("Player Health: " + playerHealth); // Logs player's remaining health
+    console.log("You lose"); // Logs "You lose" if CPU wins
+    
+    // After determining the result, check if the game is over
+    checkGameOverFunction(); // Calls checkGameOver function
+  }
 }
 
 // Check if the game is over
-function checkGameOver() {
-  if (playerHealth <= 0) {
-    alert("Game Over! CPU wins!");
-    resetGame();
-  } else if (cpuHealth <= 0) {
-    alert("Congratulations! You win!");
-    resetGame();
+function checkGameOverFunction() {
+  if (playerHealth <= 0) { // Checks if player's health is zero or less
+    alert("Game Over! CPU wins!"); // Shows alert that CPU wins
+    resetGameFunction(); // Calls resetGame function to reset the game
+  } else if (cpuHealth <= 0) { // Checks if CPU's health is zero or less
+    alert("Congratulations! You win!"); // Shows alert that player wins
+    resetGameFunction(); // Calls resetGame function to reset the game
   }
 }
-// Reset Game
-function resetGame() {
-  playerHealth = 100;
-  cpuHealth = 100;
-  updateHealthBars();
+
+// Reset game state
+function resetGameFunction() {
+  playerHealth = 100; // Resets player's health to 100
+  cpuHealth = 100; // Resets CPU's health to 100
 }
+
+j
