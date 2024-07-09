@@ -47,18 +47,19 @@ function playGameFunction(playerChoice) {
     (playerChoice === "Scissors" && cpuChoice === "Paper") // Checks if player wins with Scissors against Paper
   ) {
     console.log("You Win"); // Logs "You Win" if player wins
-    cpuHealth -= 20; // Reduces CPU's health by 10
+    cpuHealth -= 20; // Reduces CPU's health by 20
     cpuHealthBar.textContent = `Health Bar - ${cpuHealth}` // Updates CPU health bar text content
-    console.log("CPU Health: " + cpuHealth); // Logs CPU's remaining health
+    
     
     // After determining the result, check if the game is overi
     checkGameOverFunction(); // Calls checkGameOver function
-  } else {
-    playerHealth -= 20; // Reduces player's health by 10 if CPU wins
+  } else if( 
+    (cpuChoice === "Rock" && playerChoice === "Scissors") || 
+    (cpuChoice === "Paper" && playerChoice === "Rock") || 
+    (cpuChoice === "Scissors" && playerChoice === "Paper")
+  ) {
+    playerHealth -= 20; // Reduces player's health by 20 if CPU wins
     playersHealthBar.textContent = `Health Bar - ${playerHealth}` // Updates player health bar text content
-    console.log("Player Health: " + playerHealth); // Logs player's remaining health
-    console.log("You lose"); // Logs "You lose" if CPU wins
-    
     // After determining the result, check if the game is over
     checkGameOverFunction(); // Calls checkGameOver function
   }
